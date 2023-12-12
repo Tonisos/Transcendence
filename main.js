@@ -1,87 +1,113 @@
-const canvas = document.getElementById('pongCanvas');
-        const context = canvas.getContext('2d');
+const pongCanva = document.getElementById('pongCanvas');
+const context = pongCanva.getContext('2d');
 
-        // Paddle and ball properties
-        const paddleWidth = 10;
-        const paddleHeight = 100;
-        let leftPaddleY = canvas.height / 2 - paddleHeight / 2;
-        let rightPaddleY = canvas.height / 2 - paddleHeight / 2;
-        const ballSize = 10;
-        let ballX = canvas.width / 2;
-        let ballY = canvas.height / 2;
-        let ballSpeedX = 5;
-        let ballSpeedY = 5;
+// Paddle and ball properties
+const paddleWidth = 10;
+const paddleHeight = 100;
+let leftPaddleY = pongCanva.height / 2 - paddleHeight / 2;
+let rightPaddleY = pongCanva.height / 2 - paddleHeight / 2;
+const ballSize = 10;
+let ballX = pongCanva.width / 2;
+let ballY = pongCanva.height / 2;
+let ballSpeedX = 5;
+let ballSpeedY = 5;
 
-        function draw() {
-    var context = canvas.getContext('2d');
-    
-    // Draw field
-    context.fillStyle = 'black';
-    context.fillRect(0, 0, canvas.width, canvas.height);
+// score
+let leftPlayerScore = 0;
+let rightPlayerScore = 0;
 
-    // Draw middle line
-    context.strokeStyle = 'white';
+
+function draw() 
+{
+	var score = scoreCanvas.getContext('2d'); 
+	var context = pongCanva.getContext('2d');
+
+	score.clearRect(0, 0, scoreCanvas.width, scoreCanvas.height);
+
+	// Draw left player score
+    score.fillStyle = 'white';
+    score.font = '30px Arial';
+    score.fillText(leftPlayerScore, pongCanva.width / 4, 30);
+
+    // Draw right player score
+    score.fillText(rightPlayerScore, 3 * pongCanva.width / 4, 30);
+
+	// Draw field
+	context.fillStyle = 'black';
+	context.fillRect(0, 0, pongCanva.width, pongCanva.height);	
+	// Draw middle line
+	context.strokeStyle = 'white';
 	context.lineWidth = 5;	
-    context.beginPath();
-    context.moveTo(canvas.width / 2, 0);
-    context.lineTo(canvas.width / 2, canvas.height);
-    context.stroke();
-	context.lineWidth = 1;
+	context.beginPath();
+	context.moveTo(pongCanva.width / 2, 0);
+	context.lineTo(pongCanva.width / 2, pongCanva.height);
+	context.stroke();
+	context.lineWidth = 1;	
 
-    // Draw players
-    context.fillStyle = 'white';
-    context.fillRect(0, leftPaddleY, paddleWidth, paddleHeight);
-    context.fillRect(canvas.width - paddleWidth, rightPaddleY, paddleWidth, paddleHeight);
+	// Draw players
+	context.fillStyle = 'white';
+	context.fillRect(0, leftPaddleY, paddleWidth, paddleHeight);
+	context.fillRect(pongCanva.width - paddleWidth, rightPaddleY, paddleWidth, paddleHeight);	
 
-    // Draw ball
-    context.beginPath();
-    context.fillStyle = 'red';
-    context.arc(ballX, ballY, ballSize, 0, Math.PI * 2);
-    context.fill();
+	// Draw ball
+	context.beginPath();
+	context.fillStyle = 'red';
+	context.arc(ballX, ballY, ballSize, 0, Math.PI * 2);
+	context.fill();	
 
-    // Move the ball
-    ballX += ballSpeedX;
-    ballY += ballSpeedY;
+	// Move the ball
+	ballX += ballSpeedX;
+	ballY += ballSpeedY;	
 
-    // Bounce off top and bottom walls
-    if (ballY - ballSize < 0 || ballY + ballSize > canvas.height) {
-        ballSpeedY = -ballSpeedY;
-    }
+	// Bounce off top and bottom walls
+	if (ballY - ballSize < 0 || ballY + ballSize > pongCanva.height) {
+	    ballSpeedY = -ballSpeedY;
+	}	
 
-    // Bounce off paddles
-    if (
-        (ballX - ballSize < paddleWidth && ballY > leftPaddleY && ballY < leftPaddleY + paddleHeight) ||
-        (ballX + ballSize > canvas.width - paddleWidth && ballY > rightPaddleY && ballY < rightPaddleY + paddleHeight)
-    ) {
-        ballSpeedX = -ballSpeedX;
-    }
+	// Bounce off paddles
+	if (
+	    (ballX - ballSize < paddleWidth && ballY > leftPaddleY && ballY < leftPaddleY + paddleHeight) ||
+	    (ballX + ballSize > pongCanva.width - paddleWidth && ballY > rightPaddleY && ballY < rightPaddleY + paddleHeight)
+	) {
+	    ballSpeedX = -ballSpeedX;
+	}	
 
-    // Move right paddle based on the ball's position
-    if (ballY > rightPaddleY + paddleHeight / 2) {
-        rightPaddleY += 5;
-    } else {
-        rightPaddleY -= 5;
-    }
+	// Move right paddle based on the ball's position
+	if (ballY > rightPaddleY + paddleHeight / 2) {
+	    rightPaddleY += 5;
+	} else {
+	    rightPaddleY -= 5;
+	}	
 
-    // Prevent paddles from going out of bounds
-    leftPaddleY = Math.max(0, Math.min(leftPaddleY, canvas.height - paddleHeight));
-    rightPaddleY = Math.max(0, Math.min(rightPaddleY, canvas.height - paddleHeight));
+	// Prevent paddles from going out of bounds
+	leftPaddleY = Math.max(0, Math.min(leftPaddleY, pongCanva.height - paddleHeight));
+	rightPaddleY = Math.max(0, Math.min(rightPaddleY, pongCanva.height - paddleHeight));
+	
+	//change the score
+	if (ballX <= 0)
+	{
+		rightPlayerScore ++;
+		ballX = pongCanva.width / 2;
+	    ballY = pongCanva.height / 2;
+	}
+
 }
 
 
-        function gameLoop() {
-            draw();
-            requestAnimationFrame(gameLoop);
-        }
+function gameLoop() 
+{
+    draw();
+    requestAnimationFrame(gameLoop);
+}
 
-        // Handle keyboard input
-        document.addEventListener('keydown', function (event) {
-            if (event.key === 'ArrowUp') {
-                leftPaddleY -= 40;
-            } else if (event.key === 'ArrowDown') {
-                leftPaddleY += 40;
-            }
-        });
+// Handle keyboard input
+document.addEventListener('keydown', function (event) {
+    if (event.key === 'ArrowUp') {
+leftPaddleY -= 40;
+    } else if (event.key === 'ArrowDown') {
+leftPaddleY += 40;
+    }
+});
 
-        // Start the game loop
-        gameLoop();
+// Start the game loop
+gameLoop();

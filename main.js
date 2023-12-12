@@ -27,10 +27,10 @@ function draw()
 	// Draw left player score
     score.fillStyle = 'white';
     score.font = '30px Arial';
-    score.fillText(leftPlayerScore, pongCanva.width / 4, 30);
+    score.fillText(leftPlayerScore, scoreCanvas.width / 4,scoreCanvas.height / 2);
 
     // Draw right player score
-    score.fillText(rightPlayerScore, 3 * pongCanva.width / 4, 30);
+    score.fillText(rightPlayerScore, 3 * scoreCanvas.width / 4, scoreCanvas.height / 2);
 
 	// Draw field
 	context.fillStyle = 'black';
@@ -73,11 +73,11 @@ function draw()
 	}	
 
 	// Move right paddle based on the ball's position
-	if (ballY > rightPaddleY + paddleHeight / 2) {
-	    rightPaddleY += 5;
-	} else {
-	    rightPaddleY -= 5;
-	}	
+	// if (ballY > rightPaddleY + paddleHeight / 2) {
+	//     rightPaddleY += 5;
+	// } else {
+	//     rightPaddleY -= 5;
+	// }	
 
 	// Prevent paddles from going out of bounds
 	leftPaddleY = Math.max(0, Math.min(leftPaddleY, pongCanva.height - paddleHeight));
@@ -87,6 +87,13 @@ function draw()
 	if (ballX <= 0)
 	{
 		rightPlayerScore ++;
+		ballX = pongCanva.width / 2;
+	    ballY = pongCanva.height / 2;
+	}
+
+	if (ballX >= pongCanva.width)
+	{
+		leftPlayerScore ++;
 		ballX = pongCanva.width / 2;
 	    ballY = pongCanva.height / 2;
 	}
@@ -103,10 +110,18 @@ function gameLoop()
 // Handle keyboard input
 document.addEventListener('keydown', function (event) {
     if (event.key === 'ArrowUp') {
-leftPaddleY -= 40;
-    } else if (event.key === 'ArrowDown') {
-leftPaddleY += 40;
+		rightPaddleY -= 40;
+    } 
+	else if (event.key === 'ArrowDown') {
+		rightPaddleY += 40;
     }
+	if (event.key === 'w') {
+		leftPaddleY -= 40;
+    } 
+	else if (event.key === 's') {
+		leftPaddleY += 40;
+    }
+	
 });
 
 // Start the game loop

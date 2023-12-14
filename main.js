@@ -21,22 +21,80 @@ let rightPlayerScore = 0;
 // Array to store previous positions and colors of the ball for the trail effect
 const ballTrail = [];
 
+
+// Explosion properties
+const explosionParticles = [];
+
+function drawExplosion() {
+    for (let i = 0; i < explosionParticles.length; i++) {
+        const particle = explosionParticles[i];
+        context.beginPath();
+        context.fillStyle = particle.color;
+        context.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2);
+        context.fill();
+
+        // Update particle position
+        particle.x += particle.speedX;
+        particle.y += particle.speedY;
+
+        // Reduce particle size and alpha for fade-out effect
+        particle.radius *= 0.95;
+        particle.alpha *= 0.95;
+    }
+
+    // Remove faded-out particles
+    explosionParticles = explosionParticles.filter(particle => particle.alpha > 0);
+}
+
+function createExplosion(x, y) {
+    for (let i = 0; i < 20; i++) {
+        const angle = Math.random() * Math.PI * 2;
+        const speed = Math.random() * 5 + 2;
+        const color = getRandomColor();
+
+        explosionParticles.push({
+            x: x,
+            y: y,
+            speedX: Math.cos(angle) * speed,
+            speedY: Math.sin(angle) * speed,
+            radius: 10,
+            color: color,
+            alpha: 1.0,
+        });
+    }
+}
+
+
 function clearCanvas(canvas) {
     canvas.getContext('2d').clearRect(0, 0, canvas.width, canvas.height);
 }
 
+
+
+// Modifiez la fonction drawField pour utiliser une ligne pointillée au milieu
 function drawField() {
     context.fillStyle = 'black';
     context.fillRect(0, 0, pongCanvas.width, pongCanvas.height);
 
     context.strokeStyle = 'white';
-    context.lineWidth = 5;
+    context.lineWidth = 3;
+
+    // Utilisez setLineDash pour définir le motif de ligne pointillée
+    context.setLineDash([20, 20]);  // 10 pixels de trait suivi de 5 pixels d'espace
+    context.lineDashOffset = 0;    // Offset initial
+
     context.beginPath();
     context.moveTo(pongCanvas.width / 2, 0);
     context.lineTo(pongCanvas.width / 2, pongCanvas.height);
     context.stroke();
+
+    // Réinitialisez le motif de ligne
+    context.setLineDash([]);
+    context.lineDashOffset = 0;
+
     context.lineWidth = 1;
 }
+
 
 function drawPlayers() {
     context.fillStyle = 'red';
@@ -86,11 +144,13 @@ function updateGame() {
 
     if (ballX <= 0) {
         rightPlayerScore++;
+		createExplosion(pongCanvas.width / 2, pongCanvas.height / 2);
         resetBall();
     }
 
     if (ballX >= pongCanvas.width) {
         leftPlayerScore++;
+		createExplosion(pongCanvas.width / 2, pongCanvas.height / 2); 
         resetBall();
     }
 
@@ -126,6 +186,7 @@ function gameLoop() {
 
     drawField();
     drawPlayers();
+	// drawExplosion();
     drawBall();
     drawScores();
 

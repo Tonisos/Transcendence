@@ -1,0 +1,9 @@
+canvas {
+	display: block;
+	margin: auto;
+	background: black;
+	max-width: 100%; /* Make the canvas responsive */
+}
+.title {
+	color: green;
+}

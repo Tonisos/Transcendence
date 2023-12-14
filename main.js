@@ -76,7 +76,7 @@ function drawField() {
     context.fillStyle = 'black';
     context.fillRect(0, 0, pongCanvas.width, pongCanvas.height);
 
-    context.strokeStyle = 'white';
+    context.strokeStyle = 'green';
     context.lineWidth = 3;
 
     // Utilisez setLineDash pour définir le motif de ligne pointillée
@@ -97,7 +97,7 @@ function drawField() {
 
 
 function drawPlayers() {
-    context.fillStyle = 'red';
+    context.fillStyle = 'green';
     context.fillRect(0, leftPaddleY, paddleWidth, paddleHeight);
     context.fillRect(pongCanvas.width - paddleWidth, rightPaddleY, paddleWidth, paddleHeight);
 }
@@ -118,7 +118,7 @@ function drawBall() {
 
 function drawScores() {
     scoreContext.clearRect(0, 0, scoreCanvas.width, scoreCanvas.height);
-    scoreContext.fillStyle = 'white';
+    scoreContext.fillStyle = 'green';
     scoreContext.font = '30px Arial';
     scoreContext.fillText(leftPlayerScore, scoreCanvas.width / 4, scoreCanvas.height / 2);
     scoreContext.fillText(rightPlayerScore, 3 * scoreCanvas.width / 4, scoreCanvas.height / 2);

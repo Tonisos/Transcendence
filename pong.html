@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pong Game</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-	<link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css">
     <style>
-        
+        /* Your additional styles here, if needed */
     </style>
 </head>
 <body class="bg-dark text-white">
@@ -17,19 +17,25 @@
 </div>
 
 <div class="container">
-	<div class="row justify-content-center">
-		<div class="col-lg-8">
-			<!-- Score Canvas -->
+    <div class="row justify-content-center">
+        <div class="col-8">
+            <!-- Score Canvas -->
             <canvas id="scoreCanvas" width="1600" height="100"></canvas>
         </div>
     </div>
-	<br>
-	<div class="row justify-content-center">
-		<div class="col-lg-8">
-			<!-- Pong Canvas -->
-			<canvas id="pongCanvas" width="1600" height="800"></canvas>
-		</div>
-	</div>
+    <br>
+    <div class="row justify-content-center">
+        <div class="col-8">
+            <!-- Pong Canvas -->
+            <canvas id="pongCanvas" width="1600" height="800"></canvas>
+        </div>
+    </div>
+
+    <!-- Game Over Message and Play Again Button -->
+    <div id="gameOverContainer" class="text-center" style="display: none; color: red; font-size: 24px;">
+        <div id="gameOverMessage">Game Over! Refresh the page to play again.</div>
+        <button id="playAgainButton" onclick="playAgain()">Play Again</button>
+    </div>
 </div>
 
 <!-- Include Bootstrap JS from a CDN -->

@@ -71,7 +71,6 @@ function clearCanvas(canvas) {
 
 
 
-// Modifiez la fonction drawField pour utiliser une ligne pointillée au milieu
 function drawField() {
     context.fillStyle = 'black';
     context.fillRect(0, 0, pongCanvas.width, pongCanvas.height);
@@ -80,7 +79,7 @@ function drawField() {
     context.lineWidth = 3;
 
     // Utilisez setLineDash pour définir le motif de ligne pointillée
-    context.setLineDash([20, 20]);  // 10 pixels de trait suivi de 5 pixels d'espace
+    context.setLineDash([20, 20]);  // 20 pixels de trait suivi de 20 pixels d'espace
     context.lineDashOffset = 0;    // Offset initial
 
     context.beginPath();
@@ -180,17 +179,32 @@ function getRandomColor() {
     return color;
 }
 
+let gameRunning = true;
+
 function gameLoop() {
+    if (!gameRunning) {
+        clearCanvas(pongCanvas);
+        clearCanvas(scoreCanvas);
+        return;  // Arrête la boucle si gameRunning est faux
+    }
+
     clearCanvas(pongCanvas);
     clearCanvas(scoreCanvas);
 
     drawField();
     drawPlayers();
-	// drawExplosion();
     drawBall();
     drawScores();
 
     updateGame();
+
+    // Condition pour déterminer quand arrêter le jeu
+    if (leftPlayerScore >= 2 || rightPlayerScore >= 2) {
+        gameRunning = false;
+        console.log('Game Over!');
+        return;
+    }
+
     requestAnimationFrame(gameLoop);
 }
 

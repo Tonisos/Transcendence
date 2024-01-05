@@ -2,7 +2,7 @@ canvas {
 	display: block;
 	margin: auto;
 	background: black;
-	max-width: 100%; /* Make the canvas responsive */
+	max-width: 100%; 
 }
 .title {
 	color: green;

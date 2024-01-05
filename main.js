@@ -4,15 +4,15 @@ const context = pongCanvas.getContext('2d');
 const scoreContext = scoreCanvas.getContext('2d');
 
 // Paddle and ball properties
-const paddleWidth = 10;
-const paddleHeight = 125;
+const paddleWidth = pongCanvas.width /100;
+const paddleHeight = pongCanvas.height /4;
 let leftPaddleY = pongCanvas.height / 2 - paddleHeight / 2;
 let rightPaddleY = pongCanvas.height / 2 - paddleHeight / 2;
-const ballSize = 10;
+const ballSize = pongCanvas.width /75;
 let ballX = pongCanvas.width / 2;
 let ballY = pongCanvas.height / 2;
-let ballSpeedX = 5;
-let ballSpeedY = 5;
+let ballSpeedX = pongCanvas.width /200;
+let ballSpeedY = pongCanvas.width /200;
 
 // Score
 let leftPlayerScore = 0;
@@ -119,7 +119,7 @@ function drawScores() {
     scoreContext.clearRect(0, 0, scoreCanvas.width, scoreCanvas.height);
     scoreContext.fillStyle = 'green';
     scoreContext.font = '30px Arial';
-    scoreContext.fillText(leftPlayerScore, scoreCanvas.width / 4, scoreCanvas.height / 2);
+    scoreContext.fillText("leftPlayerScore", scoreCanvas.width / 4, scoreCanvas.height / 2);
     scoreContext.fillText(rightPlayerScore, 3 * scoreCanvas.width / 4, scoreCanvas.height / 2);
 }
 

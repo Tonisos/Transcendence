@@ -76,10 +76,10 @@ function drawField() {
     context.fillRect(0, 0, pongCanvas.width, pongCanvas.height);
 
     context.strokeStyle = 'green';
-    context.lineWidth = 3;
+    context.lineWidth = pongCanvas.width /100;
 
     // Utilisez setLineDash pour définir le motif de ligne pointillée
-    context.setLineDash([20, 20]);  // 20 pixels de trait suivi de 20 pixels d'espace
+    context.setLineDash([pongCanvas.width / 30 , pongCanvas.width / 30]);  // 20 pixels de trait suivi de 20 pixels d'espace
     context.lineDashOffset = 0;    // Offset initial
 
     context.beginPath();

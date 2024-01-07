@@ -1,0 +1,5 @@
+same class and id -> class for CCS and id for JS
+JS as module because ...
+box-sizing: border-box everything in CSS to size width and height easier
+
+https://developer.mozilla.org/fr/docs/Web/API/Element/getBoundingClientRect

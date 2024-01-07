@@ -1,0 +1,91 @@
+*, *::after, *::before {
+    box-sizing: border-box;
+}
+
+:root {
+	/*create var with global scope*/
+	--hue: 200;
+	--saturation: 50%;
+
+	/*color can be specified using hue (teinte), saturation, and lightness*/
+	--background-color: hsl(var(--hue), var(--saturation), 20%);
+	--foreground-color: hsl(var(--hue), var(--saturation), 75%);
+}
+
+body {
+    margin: 0;
+    background-color: var(--background-color);
+	overflow: hidden;
+}
+
+.paddle {
+	/* create a variable to further use in js*/
+	--position: 50;
+
+	/* position absolute to take no space on page*/
+    position: absolute;
+    /* size and color*/
+	background-color: var(--foreground-color);
+	width: 1.2vh;
+    height: 13vh;
+	/* position */
+	top: calc(var(--position) * 1vh);
+	/* make it centered */
+	transform: translateY(-50%);
+}
+
+.paddle.left {
+	/* 1% of the screen away from the left side*/
+    left: 1vw;
+	border-radius: 10% 50% 50% 10%;
+}
+
+.paddle.right {
+    right: 1vw ;
+	border-radius: 50% 10% 10% 50%;
+}
+
+.ball {
+	/* lot of same things as paddles*/
+	--x: 50;
+	--y: 50;
+
+	position: absolute;
+	background-color: var(--foreground-color);
+	width: 2.5vh;
+	height: 2.5vh;
+	/*create two axis to position the ball (top=height) (left=width)*/
+	top: calc(var(--y) * 1vh);
+	left: calc(var(--x) * 1vw);
+	transform: translate(-50%, -50%);
+	/*have a circle*/
+	border-radius: 50%;
+}
+
+.score {
+	/*for easy positioning*/
+	display: flex;
+	/*center on width*/
+	justify-content: center;
+	font-weight: bold;
+	font-size: 7vh;
+	color: var(--foreground-color);
+}
+
+/*select all direct children of .score*/
+.score > * {
+	/*flex items grow and share available space equally*/
+	flex-grow: 1;
+	flex-basis: 0;
+
+	/*give them personal space horizontally */
+	padding: 0 2vh;
+	/*space them from the top*/
+	margin: 1vh 0;
+}
+
+.score > :first-child {
+	text-align: right;
+	/*make a separator on the right*/
+	border-right: .5vh solid var(--foreground-color);
+}

@@ -1,52 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pong Game</title>
+    <title>Dashboard</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
-    <style>
-        /* Your additional styles here, if needed */
-    </style>
 </head>
-<body class="bg-dark text-white">
 
-<div class="container text-center">
-    <h1 class="title">Pong Game</h1>
-</div>
+<body class="dashboard">
 
-<div class="container-fluid">
-    <div class="row justify-content-center">
+    <div class="container-fluid">
+		<div class="row">
+			<!-- left panel -->
+			<div class="col-2">
+				<div class="left-panel">
+					<!-- Contenu du panneau gauche -->
+					<p>Contenu du panneau gauche</p>
+				</div>
+			</div>
 
-		<div class="col-2">
-			<canvas id="scoreCanvas"></canvas>
+			<!-- image centrale -->
+			<div class="col-8 d-flex justify-content-center align-items-center">
+				<!-- Contenu centré de l'image centrale -->
+				<img src="bg 1.jpg" alt="Image centrale" class="image">
+			</div>
+
+			<!-- right panel -->
+			<div class="col-2">
+				<!-- Contenu du panneau droit -->
+				<p>Contenu du panneau droit</p>
+			</div>
 		</div>
-        <div class="col-8">
-            <!-- Score Canvas -->
-            <!-- <canvas id="scoreCanvas" width="1600" height="100"></canvas> -->
-
-			<!-- <div class="my-3"></div> -->
-            <!-- Pong Canvas -->
-            <canvas id="pongCanvas" style="width:100%;"></canvas>
-
-        </div>
-		<div class="col-2">
-			<p>nom des joueurs</p>
-		</div>
-	
     </div>
 
-    <!-- Game Over Message and Play Again Button -->
-    <!-- <div id="gameOverContainer" class="text-center" style="display: none; color: red; font-size: 24px;">
-        <div id="gameOverMessage">Game Over! Refresh the page to play again.</div>
-        <button id="playAgainButton" onclick="playAgain()">Play Again</button>
-    </div> -->
-</div>
-
-<!-- Include Bootstrap JS from a CDN -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-<script src="main.js"></script>
+    <!-- Include Bootstrap JS from a CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="main.js"></script>
 
 </body>
+
 </html>

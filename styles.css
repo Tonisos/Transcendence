@@ -1,9 +1,26 @@
-canvas {
-	display: block;
-	margin: auto;
-	background: black;
-	max-width: 100%; 
+.dashboard {
+	height: 100%;
+	border-radius: 20px;
+
+	background-color: #08212C;
+
+	border-width: 2px;
+	border-style: solid;
+	border-color: #FB1075;
+
 }
-.title {
-	color: green;
+
+.left-panel {
+
+	border-width: 2 px;
+	border-color :#00ACE5;
+
+	  
+}
+
+.image {
+	border-radius: 20px;
+	border-color: #00ACE5;
+	border-width: 7px;
+	border-style: solid;
 }

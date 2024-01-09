@@ -1,0 +1,94 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Laws</title>
+	<script>
+
+            function showSection(section) {   
+                fetch(`/sections/${section}`)
+                .then(response => response.text())
+                .then(text => {
+                    console.log(text);
+                    document.querySelector('#content').innerHTML = text;
+                });
+            }
+
+		function render(state) {
+                        showSection(state.text);
+		}
+
+		function handleButtonClick(text) {
+			 state.text = text
+			 window.history.pushState(state, null, "");
+ 			render(state);
+		}
+
+		window.onpopstate = function (event) {
+		 if (event.state) { state = event.state; }
+			 render(state);
+				}
+
+		let state = { text: "4" };
+		window.history.pushState(state, null, "");
+
+		document.addEventListener("DOMContentLoaded", function() {
+			document.querySelectorAll('button').forEach(button => {
+				button.onclick = function() {
+                        		showSection(this.dataset.section)
+					button.addEventListener("click", handleButtonClick(this.dataset.section));
+                    		}
+                	})
+            	});
+
+		function f_law0() {
+                	fetch('/law0/')
+                	.then(response => response.text())
+			.then(html => {
+			       document.body.innerHTML = html;
+			});
+		}
+
+
+        </script>
+    </head>
+    <body>
+
+        <h1 style="margin-left: auto;
+		   margin-right: auto;
+		   width: 6em;
+		   text-align: center;
+		   font-size: 4em;"
+		   >LAWS</h1>
+
+	<div style="display: flex;
+		    justify-content: center
+		    ">
+
+        	<button data-section="1" style="font-size: 2em;
+				      margin: 1em
+				      ">LAW 1</button>
+
+        	<button data-section="2" style="font-size: 2em;
+				      margin: 1em
+				      ">LAW 2</button>
+
+        	<button data-section="3" style="font-size: 2em;
+				      margin: 1em
+				      ">LAW 3</button>
+	</div>
+
+        <div id="content" style="font-size: 3em;
+		justify-content: center;
+		text-align: center;
+		display:flex
+		"></div>
+
+	<div style="display: flex;
+		    font-size: 10px;
+		    margin-top: 20em;
+		    justify-content: center"
+		    onclick="f_law0()">LAW 0</div>
+
+    </body>
+</html>

@@ -53,14 +53,13 @@
 
 		window.addEventListener('popstate', function(event)
 		{
+			console.log(event.state);
 			if (event.state.view === "/law0/")
 				fetch_view("/law0/", "page");
 			else 
-			{
 				fetch_view("", "page");
-				if (event.state.view === "/sections/")
-					fetch_view(`/sections/${event.state.section}`, "text");
-			}
+			if (event.state.view === "/sections/")
+				fetch_view(`/sections/${event.state.section}`, "text");
 		});
 
         </script>

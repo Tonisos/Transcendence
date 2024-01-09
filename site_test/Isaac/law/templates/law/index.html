@@ -8,67 +8,58 @@
 	<script>
 
 		let state = { view: "", section: "" };
+		
+		function fetch_view(view, type)
+		{
+			if (type === "page")
+			{
+                		fetch(view)
+                		.then(response => response.text())
+				.then(html => 
+				{
+					document.body.innerHTML = html;
+				});
+			}
+			else
+			{
+                		fetch(view)
+                		.then(response => response.text())
+                		.then(text => 
+				{
+					document.querySelector('#content').innerHTML = text;
+				});
+			}
+		}
 
 		function showSection(section)
 		{
-			fetch(`/sections/${section}`)
-                	.then(response => response.text())
-                	.then(text =>
-			{
-				console.log(text);
-				document.querySelector('#content').innerHTML = text;
-				state.view = "/sections/";
-				state.section = section;
-				window.history.pushState(state, null, "");
-                	});
+			fetch_view(`/sections/${section}`, "text");
+			state.view = "/sections/";
+			state.section = section;
+			window.history.pushState(state, null, "");
             	}
 
 		function f_law0()
 		{
-                	fetch("/law0/")
-                	.then(response => response.text())
-			.then(html => 
-			{
-			        document.body.innerHTML = html;
-				state.view = "/law0/";
-				window.history.pushState(state, null, "");
-			});
+			fetch_view("/law0/", "page");
+			state.view = "/law0/";
+			window.history.pushState(state, null, "");
 		}
 
 		window.addEventListener('load', function()
 		{
-			window.history.replaceState(state, null, "");
+			window.history.replaceState({view: "", section: ""}, null, "");
 		});
 
 		window.addEventListener('popstate', function(event)
 		{
 			if (event.state.view === "/law0/")
-			{
-                		fetch("/law0/")
-                		.then(response => response.text())
-				.then(html => 
-				{
-			        	document.body.innerHTML = html;
-				});
-			}
+				fetch_view("/law0/", "page");
 			else 
 			{
-				fetch("")
-                		.then(response => response.text())
-				.then(html => 
-				{
-			        	document.body.innerHTML = html;
-				});
+				fetch_view("", "page");
 				if (event.state.view === "/sections/")
-				{
-					fetch(`/sections/${event.state.section}`)
-                			.then(response => response.text())
-                			.then(text =>
-					{
-						console.log(text);
-						document.querySelector('#content').innerHTML = text;
-					});
-				}
+					fetch_view(`/sections/${event.state.section}`, "text");
 			}
 		});
 

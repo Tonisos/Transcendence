@@ -54,25 +54,33 @@
 	border-width:1px;
 	border-color: #00ACE5;
 	border-style: solid;
-	height: 25vh;
+	height: 10vh;
+	border-radius: 15px;
+
 }
 .mid-1widget {
 	border-width:1px;
 	border-color: #00ACE5;
 	border-style: solid;
-	height: 25vh;
+	height: 40vh;
+	border-radius: 15px;
+
 }
 .mid-2widget {
 	border-width:1px;
 	border-color: #00ACE5;
 	border-style: solid;
 	height: 25vh;
+	border-radius: 15px;
+
 }
 .bottom-widget {
 	border-width:1px;
 	border-color: #00ACE5;
 	border-style: solid;
 	height: 25vh;
+	border-radius: 15px;
+
 }
 
 .central-image {
@@ -89,6 +97,27 @@
 }
 
 .bot-img {
+	margin : px;
 	object-fit: cover;
 	height: 10vh;
+}
+
+
+.custom-btn{
+	width: 70%;
+	background-color:#F3970E;
+    color: #fff;
+    border: 3px solid #F5F6A6;
+}
+.custom-btn2{
+	width: 70%;
+	background-color:#08212C;
+    color: #F3970E;
+    border: 3px solid #F5F6A6;
+}
+.custom-btn3{
+	width: 70%;
+	background-color:#FB1075;
+    color: #F5F6A6;
+    border: 3px solid #F5F6A6;
 }

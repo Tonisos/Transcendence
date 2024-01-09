@@ -1,14 +1,20 @@
 .dashboard {
 	height: 100%;
 	border-radius: 20px;
-
-	background-color: #08212C;
+	background-image:url(./bg.jpeg);
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	/* background-color: #08212C; */
 	border-width: 2px;
 	border-style: solid;
 	border-color: #FB1075;
 	overflow: hidden;
-
+	object-fit: cover;
 }
+
+
+
 
 .bg-image{
 	background-size: cover;
@@ -17,15 +23,26 @@
   }
 
 .left-panel {
-
+	background-color: #08212C;
+	margin: 0;
 	border-width: 2 px;
 	border-color :#00ACE5;
 	height: 100vh;
 	width: 100%;  
 }
 
+
+
+  .col-2 {
+	margin-left: 0 !important;
+	margin-right: 0 !important;
+	padding-left: 0 !important;
+	padding-right: 0 !important;
+  }
+
 .right-panel {
-	border: 2 px solid;
+	background-color: #08212C;
+	border: 2px solid;
 	border-color: #00ACE5;
 }
 

@@ -6,7 +6,7 @@
 	background-position: center;
 	background-repeat: no-repeat;
 	/* background-color: #08212C; */
-	border-width: 2px;
+	border-width: 2%;
 	border-style: solid;
 	border-color: #FB1075;
 	overflow: hidden;
@@ -62,7 +62,7 @@
 	border-width:1px;
 	border-color: #00ACE5;
 	border-style: solid;
-	height: 40vh;
+	height: 45vh;
 	border-radius: 15px;
 
 }
@@ -70,7 +70,7 @@
 	border-width:1px;
 	border-color: #00ACE5;
 	border-style: solid;
-	height: 25vh;
+	height: 30vh;
 	border-radius: 15px;
 
 }
@@ -78,7 +78,7 @@
 	border-width:1px;
 	border-color: #00ACE5;
 	border-style: solid;
-	height: 25vh;
+	height: 15vh;
 	border-radius: 15px;
 
 }
@@ -97,9 +97,10 @@
 }
 
 .bot-img {
+	margin-top: 20%;
 	margin : px;
 	object-fit: cover;
-	height: 10vh;
+	width: 70%;
 }
 
 
